@@ -28,7 +28,7 @@ def main():
             for m in menu:
                 if item == m:
                     total += menu[m]
-                    print(f'Total: ${format(total, ".2f")}')
+                    print(f"Total: ${format(total, '.2f')}")
         except EOFError:
             print("\n")
             exit()
