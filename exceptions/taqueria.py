@@ -25,14 +25,16 @@ def main():
     while True:
         try:
             item = input("Items: ").title()
-            for m in menu:
-                if item == m:
-                    total += menu[m]
-                    print(f"Total: ${format(total, '.2f')}")
+            if item in menu:
+                total += menu[item]
+                print(f"Total: ${total:.2f}")
+            
         # raise when input() function hits an end-of-file (EOF) condition
         except EOFError:
             print("\n")
-            exit()
+            break
 
 
-main()
+if __name__ == "__main__":
+    main()
+
