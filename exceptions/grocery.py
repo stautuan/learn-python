@@ -19,6 +19,8 @@ def main():
                 grocery_list[item] = 1
         except EOFError:
             print("\n")
+            # items() returns a list of tuples
+            # the list is sorted alphabetically by keys
             for key, value in sorted(grocery_list.items()):
                 print(value, key)
             break
