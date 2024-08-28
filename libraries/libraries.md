@@ -109,6 +109,10 @@ response = request.get("https://itunes.apple.com/search?entity=song&limit=1&term
 print(response.json())
 ```
 
+- `entity=song` specifies that the search is for songs
+- `limit=1` the response should contain 1 song
+- `term=` is the term we are searching for that is stored in `sys.argv[1]`
+
 The output is quite dizzying tho! Let's make it readable by importing the JSON library.
 
 ```python
@@ -142,4 +146,4 @@ for result in o["results"]:
     print(result["trackName"])
 ```
 
-We have stored the JSON file in `o`. Then iterate through until it finds the `trackName`. Notice that we have set the limit to `50` meaning it will output 50 track names.
+We have stored the JSON response in `o`. Then iterate through it and print the `trackName`. Notice that we have set the limit to `50`, which means it will output 50 songs, as we specified from `entity=song`.
