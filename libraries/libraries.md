@@ -76,3 +76,70 @@ elif len(sys.argv) > 2:
 
 print("hello, my name is", sys.argv[1])
 ```
+
+## Packages
+
+One of the reasons why Python is so popular is because of its powerful third-party libaries called "packages". These packages can be installed using a package manager called `pip`. One of these packages that we will use for this example is `cowsay`, a well-known package that allows a cow to talk to the user.
+
+```python
+import cowsay
+import sys
+
+if len(sys.argv) == 2:
+    cowsay.cow("hello, " + sys.argv[1])
+```
+
+## APIs
+
+- APIs allows us to connect to the code of others
+- `requests` is a package that allows our program to behave as a web browser would
+- For this example, we will use Apple iTunes' API
+
+```python
+import requests
+import sys
+
+if len(sys.argv) != 2:
+    sys.exit()
+
+# based on Apple iTunes' documentation, we can fetch the
+# data of a song we are requesting to get using this URL
+# the output of this request is a JSON file
+response = request.get("https://itunes.apple.com/search?entity=song&limit=1&term=" + sys.argv[1])
+print(response.json())
+```
+
+The output is quite dizzying tho! Let's make it readable by importing the JSON library.
+
+```python
+import json
+import requests
+import sys
+
+if len(sys.argv) != 2:
+    sys.exit()
+
+response = request.get("https://itunes.apple.com/search?entity=song&limit=1&term=" + sys.argv[1])
+
+# implement json.dumps() to utilize indent to make the output more readable
+print(json.dumps(response.json(), indent=2))
+```
+
+Now, let's get the `trackName` of this JSON file
+
+```python
+import json
+import requests
+import sys
+
+if len(sys.argv) != 2:
+    sys.exit()
+
+response = request.get("https://itunes.apple.com/search?entity=song&limit=50&term=" + sys.argv[1])
+
+o = response.json()
+for result in o["results"]:
+    print(result["trackName"])
+```
+
+We have stored the JSON file in `o`. Then iterate through until it finds the `trackName`. Notice that we have set the limit to `50` meaning it will output 50 track names.
