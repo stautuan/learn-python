@@ -27,15 +27,22 @@ def main():
     while True:
         try:
             level = get_level()
+            score = 0
             if level == 1 or level == 2 or level == 3:
                 for _ in range(10):
-                    x = generate_integer(level)
-                    y = generate_integer(level)
-                    answer = x + y
+                    try:
+                        x = generate_integer(level)
+                        y = generate_integer(level)
+                        answer = x + y
 
-                    user_answer = int(input(f"{x} + {y} = "))
-                    print(user_answer)
-
+                        user_answer = int(input(f"{x} + {y} = "))
+                        if user_answer == answer:
+                            score += 1
+                        else:
+                            print("EEE")
+                    except ValueError:
+                        print("EEE")
+            print(score)
         except ValueError:
             pass
 
