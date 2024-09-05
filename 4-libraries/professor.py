@@ -15,10 +15,10 @@ Implement a program that:
 # [x] if level == 1 or 2 or 3, generate math problems
 # [x] else prompt the user again
 # [x] randomly generate 10 math problems
-# [ ] prompt user to solve the math problem
-# [ ] if answer is incorrect int / type, print EEE and prompt again (3 attempts)
-# [ ] after 3 attempts, print the correct answer
-# [ ] print user score
+# [x] prompt user to solve the math problem
+# [x] if answer is incorrect int / type, print EEE and prompt again (3 attempts)
+# [x] after 3 attempts, print the correct answer
+# [x] print user score
 
 import random
 
@@ -27,28 +27,42 @@ def main():
     while True:
         try:
             level = get_level()
-            score = 0
-            if level == 1 or level == 2 or level == 3:
-                for _ in range(10):
-                    try:
-                        x = generate_integer(level)
-                        y = generate_integer(level)
-                        answer = x + y
 
-                        user_answer = int(input(f"{x} + {y} = "))
-                        if user_answer == answer:
-                            score += 1
-                        else:
-                            print("EEE")
-                    except ValueError:
-                        print("EEE")
-            print(score)
+            if level in [1, 2, 3]:
+                score = 0
+                for _ in range(10):
+                    x = generate_integer(level)
+                    y = generate_integer(level)
+                    answer = x + y
+                    attempts = 0
+
+                    while attempts < 3:
+                        try:
+                            user_answer = int(input(f"{x} + {y} = "))
+                            if user_answer == answer:
+                                score += 1
+                                break
+                            else:
+                                print("EEE")
+                                attempts += 1
+                        except ValueError:
+                            pass
+                    if attempts == 3:
+                        print(f"{x} + {y} = {answer}")
+                print(f"Score: {score}")
+                break
         except ValueError:
             pass
 
 
 def get_level():
-    return int(input("Level: "))
+    while True:
+        try:
+            level = int(input("Level: "))
+            if level in [1, 2, 3]:
+                return level
+        except ValueError:
+            pass
 
 
 def generate_integer(level):
