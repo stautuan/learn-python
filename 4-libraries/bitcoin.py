@@ -19,7 +19,7 @@ def main():
         sys.exit(1)
 
     for arg in sys.argv[1:]:
-        if not is_intstring(arg):
+        if not is_floatstring(arg):
             sys.exit("Command-line argument is not a number")
 
         bitcoin_price = get_bitcoin_price()
@@ -27,7 +27,7 @@ def main():
         print(f"${amount:,.4f}")
 
 
-def is_intstring(n):
+def is_floatstring(n):
     try:
         float(n)
         return True
