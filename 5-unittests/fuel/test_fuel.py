@@ -19,5 +19,6 @@ def test_error():
         convert("4/0")
     with pytest.raises(ValueError):
         convert("three/four")
+    with pytest.raises(ValueError):
         convert("1.5/3")
 
