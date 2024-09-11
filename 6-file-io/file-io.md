@@ -47,3 +47,70 @@ for name in sorted(names):
 
 - `rstrip()` removes extra line breaks or spaces at the end of each line
 - `sorted()` sorts the list to ascending order
+
+## CSV
+
+"comma separated values"
+
+Below is what our CSV file `students.csv` looks like.
+
+```csv
+Hermione,Gryffindor
+Harry,Gryffindor
+Ron,Gryffindor
+Draco,Gryffindor
+```
+
+```python
+with open("students.csv") as file:
+    for line in file:
+        name, house = line.rstrip().split(",")
+        print(f"{name} is in {house}")
+
+```
+
+The above code reads our csv file. Notice that we used the `split(",")` function to return two values. The comma is the indicator on where to split them and store each in a variable called `name` and `house` respectively.
+
+To sort this list:
+
+```python
+students = []
+
+with open("students.csv") as file:
+    for line in file:
+        name, house = line.rstrip().split(",")
+        students.append(f"{name} is in {house}")
+
+for student in sorted(students):
+    print(student)
+```
+
+To organize our data as dictionaries, we can modify it like so:
+
+```python
+students = []
+
+with open("students.csv") as file:
+    for line in file:
+        name, house = line.rstrip().split(",")
+        student = {"name": name, "house": house}
+        students.append(student)
+
+for student in students:
+    print(f"{student['name']} is in {student['house']}")
+```
+
+To sort it with dictionaries, we will use a `lambda` function, which is an anonymous function. Lambda functions are useful when the function will only be referenced once in our code.
+
+```python
+students = []
+
+with open("students.csv") as file:
+    for line in file:
+        name, house = line.rstrip().split(",")
+        student = {"name": name, "house": house}
+        students.append(student)
+
+for student in sorted(students, key=lambda student: student["name"]):
+    print(f"{student['name']} is in {student['house']}")
+```
