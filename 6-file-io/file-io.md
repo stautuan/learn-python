@@ -133,7 +133,7 @@ students = [
 ]
 ```
 
-The lambda function takes one parameter `student` and returns a list of a sorted students by "name" from the `student` dictionary.
+The lambda function takes one parameter `student` and returns a list of sorted students by "name" from the `student` dictionary.
 
 ```python
 # sorted list
