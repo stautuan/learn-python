@@ -56,3 +56,7 @@ def write_file(file_name):
             last, first = student["name"].split(", ")
             house = student["house"]
             writer.writerow({"first": first, "last": last, "house": house})
+
+
+if __name__ == "__main__":
+    main()
