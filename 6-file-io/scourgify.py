@@ -48,6 +48,7 @@ easily store them in variables for convenient access when placing them in their
 respective columns.
 """
 def write_file(file_name):
+    # "w" instead of "a" as we are not appending new data to the file
     with open(file_name, "w") as file:
         field_names = ["first", "last", "house"]
         writer = csv.DictWriter(file, fieldnames=field_names)
