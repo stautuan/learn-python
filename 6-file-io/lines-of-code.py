@@ -5,6 +5,8 @@
 # does not end in .py, or if the specified file does not exist, the program
 # should instead exit via sys.exit.
 
+# TODO: organize code
+
 import sys
 
 if len(sys.argv) < 2:

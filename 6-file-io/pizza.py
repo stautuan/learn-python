@@ -7,6 +7,7 @@ command-line argument, or if the specified file’s name does not end
 in .csv, or if the specified file does not exist, the program should
 instead exit via sys.exit.
 """
+# TODO: organize code 
 
 import csv
 import sys
