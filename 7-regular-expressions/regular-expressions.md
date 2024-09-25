@@ -4,16 +4,34 @@ These are patterns that will help us validate if an email is formatted correctly
 
 There is a library in Python, `re` (regular expressions), that can help us validate emails using the regular expression pattern we are looking for.
 
+```
+# list of symbols to create a regular expression
+.   a (dot) matches a character, ex: 'a.c' = 'abc', 'a1c', 'a@c'
+*   any amount of this including NONE at all, ex: 'ab*c' = 'ac', 'abbc', 'abbbbbc'
++   at least ONE of this, ex: 'ab+c' = 'abc', 'abbbbc' BUT NOT 'ac'
+?   this means optional, 0 or 1 time, ex: 'ab?c' = 'ac', 'abc' BUT NOT 'abbc'
+{m} this means the EXACT count, ex: 'a{3}' = 'aaa' BUT NOT 'aa'
+{m,n} repetitions between m and n, ex: a{2,4} = 'aa', 'aaa', 'aaaa' BUT NOT 'aaaaa'
+```
+
 ```python
 import re
 
 email = input("What's your email? ").strip()
 
-if re.search(r"^.+@.+\.edu", email):
+if re.search(r"^.+@.+\.edu$", email):
 	print("Valid")
 else:
 	print("Invalid")
 ```
+
+```
+^   the start of the string
+$   the end of the string
+r   raw string - string that don't format special characters
+```
+
+The raw string `r` is telling the compiler to treat each character as a single character, unlike `\n`, two characters that become one, is treated as a newline. Next, start the expression `^` that accepts all characters `.` and fills it at with at least one character `+` before and after the `@` symbol. Close it with `$`.
 
 ## Extracting User Input
 
