@@ -10,4 +10,4 @@ class Student:
 ```
 
 - `Student` is the class
-- we initialize the class using `__init__` that takes the `name` and `house`
+- we initialize the class using the `__init__` method that takes the `name` and `house`
