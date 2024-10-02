@@ -65,3 +65,76 @@ if __name__ == "__main__":
 - Classes have built-in functions called **method**. In this case, we have `__init__`, `__str__`, and `charm`.
 - `__str__` is a built-in function in Python in which you can print the attributes of an object.
 - `charm` is a method we have defined where specific cases have specific results.
+
+## Decorators
+
+```python
+class Student:
+    def __init__(self, name, house):
+        self.name = name
+        self.house = house
+
+    def __str__(self):
+        return f"{self.name} from {self.house}"
+
+   # Getter for name
+    @property
+    def name(self):
+        return self._name
+
+    # Setter for name
+    @name.setter
+    def name(self, name):
+        if not name:
+            raise ValueError("Invalid name")
+        self._name = name
+
+    # Getter for house
+    @property
+    def house(self):
+        return self._house
+
+    # Setter for house
+    @house.setter
+    def house(self, house):
+        if house not in ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]:
+            raise ValueError("Invalid house")
+        self._house = house
+
+
+def main():
+    student = get_student()
+    print(student)
+
+
+def get_student():
+    name = input("Name: ")
+    house = input("House: ")
+    return Student(name, house)
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+- The `@property` turns the method `house` as a getter and a property of our class, which allows us to access the `house` attributes.
+- It returns a value `self._house`.
+- The underscore is a convention in Python that tells the other programmers working on this code that "This is an actual data storage and it shouldn't be accessed directly from outside the class." It's only for internal use.
+
+Without underscore:
+
+```python
+@property
+    def house(self):
+        return self.house # This would cause recursion! It triggers to call the getter method again.
+```
+
+```python
+@property
+    def house(self):
+        return self.house_value # This works fine
+```
+
+- The `@house.setter` sets the value of the house.
+- If it's valid, it stores the value in `self._house`
