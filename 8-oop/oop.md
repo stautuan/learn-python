@@ -150,6 +150,8 @@ import random
 
 
 class Hat:
+    # there is no __init__ method because we don't need to instantiate a hat
+    # because there's only ONE hat after all :)
     houses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]
 
     @classmethod
