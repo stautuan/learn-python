@@ -140,6 +140,11 @@ Without underscore:
 
 ## Class Methods
 
+- `@classmethod` works with the **class** and not the **instances** of a class.
+- Therefore it takes `cls` instead of `self`.
+- `self` is like saying "This specific thing".
+- `cls` is like saying "This type of thing".
+
 ```python
 import random
 
