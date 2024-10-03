@@ -115,7 +115,6 @@ def get_student():
 
 if __name__ == "__main__":
     main()
-
 ```
 
 - The `@property` turns the method `house` as a getter and a property of our class, which allows us to access the `house` attributes.
@@ -138,3 +137,51 @@ Without underscore:
 
 - The `@house.setter` sets the value of the house.
 - If it's valid, it stores the value in `self._house`
+
+## Class Methods
+
+```python
+import random
+
+
+class Hat:
+    houses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]
+
+    @classmethod
+    # this function is always handled by the instance of the class Hat
+    def sort(cls, name):
+        print(name, "is in", random.choice(cls.houses))
+
+
+Hat.sort("Harry")
+```
+
+Let's apply this to our previous example.
+
+```python
+class Student:
+    def __init__(self, name, house):
+        self.name = name
+        self.house = house
+
+    def __str__(self):
+        return f"{self.name} from {self.house}"
+
+   @classmethod
+   def get(cls):
+        name = input("Name: ")
+        house = input("House: ")
+        return Student(name, house)
+
+
+def main():
+    student = Student.get()
+    print(student)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+- We have remove the `get_student` function and applied its functionality to the `@classmethod`.
+- We then called the `get` method with the class name `Student`.
