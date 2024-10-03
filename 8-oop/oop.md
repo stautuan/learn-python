@@ -148,7 +148,6 @@ class Hat:
     houses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]
 
     @classmethod
-    # this function is always handled by the instance of the class Hat
     def sort(cls, name):
         print(name, "is in", random.choice(cls.houses))
 
