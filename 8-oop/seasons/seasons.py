@@ -12,21 +12,15 @@ Exit via `sys.exit` if the user does not input a date in YYYY-MM-DD format. Ensu
 program will not raise any exceptions.
 """
 
-# PROGRAM
-# prompt user for date of birth in YYYY-MM-DD format
-# print how old they are in minutes (rounded to nearest integer) using English words
-
-# assume user was born at midnight on that date
-# assume the time that the user runs the program is also midnight
-
-# use datetime.date.today to get today's date.
-
 # TODO:
 # x Prompt the user with their date of birth.
 # x Validate date format (YYYY-MM-DD)
 # x Print age.
-# 4. Find the difference between two dates.
+# x Find the difference between two dates using timedelta.
+# x Convert minutes to words.
 
+import inflect
+import sys
 
 from datetime import date
 
@@ -34,11 +28,15 @@ from datetime import date
 def main():
     date_of_birth = input("Date of Birth: ")
 
-    if validate(date_of_birth):
-        print(age(date_of_birth))
-        print("Valid date format!")
-    else:
-        print("Invalid date")
+    if not validate(date_of_birth):
+        sys.exit("Invalid date")
+
+    try:
+        minutes = calculate_minutes(date_of_birth)
+        words = minutes_to_words(minutes).capitalize()
+        print(f'{words} minutes')
+    except ValueError as e:
+        sys.exit(str(e))
 
 
 def validate(date_str):
@@ -49,10 +47,23 @@ def validate(date_str):
         return False
 
 
-def age(date_str):
-    birth_year, birth_month, birth_day = date_str.split("-")
-    present_year, present_month, present_day = str(date.today()).split("-")
-    return int(present_year) - int(birth_year)
+def calculate_minutes(date_str):
+    """Calculate age in minutes from birth date to today."""
+    birth_date = date.fromisoformat(date_str)
+    today = date.today()
+
+    # Check if birth date is in the future
+    if birth_date > today:
+        raise ValueError("Birth date cannot be in the future")
+
+    # Calculate days between dates and convert to minutes using timedelta
+    days = (today - birth_date).days
+    return days * 24 * 60
+
+
+def minutes_to_words(minutes):
+    p = inflect.engine()
+    return p.number_to_words(minutes, andword="")
 
 
 if __name__ == "__main__":
