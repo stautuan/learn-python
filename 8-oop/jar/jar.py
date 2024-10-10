@@ -1,5 +1,5 @@
-# __str__ should return a str with n "🍪", where n is the number of cookies in the jar
-# if there are 3 cookies in the cookie jar there should be "🍪🍪🍪"
+# deposit should add n cookies to the cookie jar.
+# if it exceeds, deposit should raise a ValueError.
 
 class Jar:
     def __init__(self, capacity=12):
@@ -13,10 +13,14 @@ class Jar:
         return n * self.cookies
 
     def deposit(self, n):
-        pass
+        if n + self.cookies > self.capacity:
+            raise ValueError("You have exceeded the cookie jar's capacity.")
+        self.cookies += n
 
     def withdraw(self, n):
-        pass
+        if self.cookies - n < 0:
+            raise ValueError("There aren't that many cookies in the cookie jar.")
+        self.cookies -= n
 
     @property
     def capacity(self):
