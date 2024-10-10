@@ -6,6 +6,7 @@ class Jar:
         if capacity < 0:
             raise ValueError("Capacity must be non-negative")
         self.capacity = capacity
+        self.cookies = 0
 
     def __str__(self):
         n = "🍪"
