@@ -1,8 +1,19 @@
 # Regular Expressions
 
-These are patterns that will help us validate if an email is formatted correctly, for example.
+```python
+email = input("What's your email? ").strip()
 
-There is a library in Python, `re` (regular expressions), that can help us validate emails using the regular expression pattern we are looking for.
+if "@" in email:
+    print("valid")
+else:
+    print("invalid")
+```
+
+- The `.strip()` removes the whitespace.
+- As long as there is an `@` sign, the input will be `valid`.
+- Error: If one inputs `@@`, it will also be `valid`.
+
+Let's improve our program with `re` regular expressions. These are patterns that will help us validate if an email is formatted correctly, for example.
 
 ```
 # list of symbols to create a regular expression
@@ -13,6 +24,37 @@ There is a library in Python, `re` (regular expressions), that can help us valid
 {m} this means the EXACT count, ex: 'a{3}' = 'aaa' BUT NOT 'aa'
 {m,n} repetitions between m and n, ex: a{2,4} = 'aa', 'aaa', 'aaaa' BUT NOT 'aaaaa'
 ```
+
+```python
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(".+@.+.edu", email):
+    print("valid")
+else:
+    print("invalid")
+```
+
+- If the input is `stacy@harvard.edu` it would be `valid`.
+- If the input is `stacy@harvard?edu` it would be `valid`.
+
+Let's improve that.
+
+```python
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(".+@.+\.edu", email):
+    print("valid")
+else:
+    print("invalid")
+```
+
+Much better. We have utilized the "escape character" `\` to include the `.` before the `edu` as part of our string.
+
+#
 
 ```python
 import re
