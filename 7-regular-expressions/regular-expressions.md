@@ -54,7 +54,7 @@ else:
 
 Much better. We have utilized the "escape character" `\` to include the `.` before the `edu` as part of our string.
 
-#
+Let's further improve our program by using "raw strings" `r`.
 
 ```python
 import re
@@ -74,6 +74,21 @@ r   raw string - string that don't format special characters
 ```
 
 The raw string `r` is telling the compiler to treat each character as a single character, unlike `\n`, two characters that become one, is treated as a newline. Next, start the expression `^` that accepts all characters `.` and fills it at with at least one character `+` before and after the `@` symbol. Close it with `$`.
+
+However if we type in `harry@@@hogwarts.edu` it is still `valid`. Let's continue to improve our program:
+
+```python
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(r"^[^@]+@[^@]+\.edu$", email):
+	print("Valid")
+else:
+	print("Invalid")
+```
+
+`harry@@@hogwarts.edu` it is now regarded as `invalid`.
 
 ## Extracting User Input
 
