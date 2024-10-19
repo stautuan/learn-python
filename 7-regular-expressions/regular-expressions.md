@@ -88,7 +88,59 @@ else:
 	print("Invalid")
 ```
 
-`harry@@@hogwarts.edu` it is now regarded as `invalid`.
+`harry@@@hogwarts.edu` it is now regarded as `invalid`. However, our validation expression is far too accommodating. Let's modify our code as follows:
+
+```python
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(r"^[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.edu$", email):
+	print("Valid")
+else:
+	print("Invalid")
+```
+
+`[a-zA-Z0-9_]` tells the validation that characters must be `a` and `z`, between `A` and `Z`, between `0` and `9`, and potentially include an underscore `_`.
+
+We can further modify our code as follows:
+
+```python
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(r"^\w+@\w+\.edu$", email):
+    print("valid")
+else:
+    print("invalid")
+```
+
+Notice that `\w` is the same as `[a-zA-Z0-9_]`.
+
+Here are some additional patterns:
+
+```
+\d    decimal digit
+\D    not a decimal digit
+\s    whitespace characters
+\S    not a whitespace character
+\w    word character, as well as numbers and the underscore
+\W    not a word character
+```
+
+Let's modify our code further:
+
+```python
+import re
+
+email = input("What's your email? ").strip()
+
+if re.search(r"^\w+@\w.+\.(com|edu|gov|net|org)$", email):
+    print("Valid")
+else:
+    print("Invalid")
+```
 
 ## Extracting User Input
 
