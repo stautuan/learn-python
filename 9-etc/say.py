@@ -1,5 +1,8 @@
+import cowsay
 import pyttsx3
 
 engine = pyttsx3.init()
-engine.say("You will succeed!")
+this = input("What's this? ")
+cowsay.cow(this)
+engine.say(this)
 engine.runAndWait()
